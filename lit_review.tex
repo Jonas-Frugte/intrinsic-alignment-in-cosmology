@@ -40,6 +40,7 @@
 \DeclareRobustCommand{\Cov}{\ifmmode\text{Cov}\else d\fi}
 \DeclareRobustCommand{\CMB}{\ifmmode\text{CMB}\else d\fi}
 \DeclareRobustCommand{\gal}{\ifmmode\text{gal}\else d\fi}
+\DeclareRobustCommand{\tr}{\ifmmode\text{tr}\else d\fi}
 
 \newcommand{\br}[1]{\ensuremath{\left( #1 \right)}}
 \newcommand{\sbr}[1]{\ensuremath{\left[ #1 \right]}}
@@ -64,9 +65,111 @@ A brief literature review of intrinsic alignment (IA) in cosmology.
 \begin{document}
 
 \maketitle
+\section*{Abbreviations}
+\begin{itemize}
+    \item[] EFT: effective field theory
+    \item[] BPs: bias parameters
+    \item[] IA: intrinsic alignment
+    \item[] LIMD: linear in matter density
+\end{itemize}
 
-\section{Introduction}
-Best paper ever (I am not biased): \cite{frugte2025futureparameterconstraintsweak}.
+\section{Halo Bias and EFT}
+In this section we introduce the much more established field of galaxy bias and an EFT of galaxy bias. This will directly translate to the EFT used in section \ref{sec:galaxyintrinsicalignment}. We consider a $\Lambda$CDM universe with a perturbed FLRW metric unless stated otherwise.
+
+\subsection{What is bias}
+Say we look at a the universe at redshift $z$. Given a perturbation to the matter density $\delta(\mathbf x, z)$ we would like to know the perturbation to the density of some other tracer. In this section we will consider the relative number overdensity of dark matter halos, $\delta_h$, but the results are applicable to any tracer in general, notably to galaxy number density. We then model the relation between these two as
+\begin{equation}
+    \delta_h(\mathbf x, z) = \sum_{\mathcal O} b_{\mathcal O}(z) \mathcal O(\delta)(\mathbf x, z),
+\end{equation}
+where we sum over some set of operators $\{\mathcal O\}$ that map $\delta$ to a new function of position and time and the $b_{\mathcal O}$ are the BPs. Crucially, they only depend on z and not on $\mathbf x$. 4 questions arise naturally from this model:
+\begin{enumerate}
+    \item What is the motivation to use this model? Why is this expected to be accurate up to a (reasonably small) scale cutoff with the right choice of operators and values of BPs?
+    \item How can we choose a set of operators that is "complete"? I.e. that the model is correct in the sense of the previous question.
+    \item How do the bias parameters evolves over time?
+    \item How do we determine bias parameters? Both theoretically and empiricially given a dataset from a real life survey or a simulation.
+\end{enumerate}
+The rest of this section will be devoted to summarizing the answers to these questions.
+
+
+\subsection{Relating bias parameters from different times}
+We consider a simple case where a population of galaxies instantly formed at some time $\tau_*$. This is sufficient because the evolution equations we obtain will then work as a ``Green's function'' for the evolution equations of bias parameters in general. We simply integrate over the time evolved bias parameters weighted by the rate of galaxy formation at the integrand time.
+
+We assume that whatever tracer we consider moves with the fluid. This immediately gives the continuity equation:
+\begin{equation}
+    \frac{D}{D\tau}\delta_g = -\theta(1+\delta_g),
+    \label{eq:conteqtracer}
+\end{equation}
+where
+\begin{equation}
+    \frac{D}{D\tau} = \frac{\partial}{\partial \tau} + v^i\frac{\partial}{\partial x^i}
+\end{equation}
+is the convective time derivative, $v^i$ is the peculiar velocity of the cosmic matter fluid, and $\theta=\partial_i v^i$ is the velocity divergence. % TODO: mention something about assuming no velocity bias?
+To evolve $\delta_g$ we also need evolution equations for $\delta$ and $v^i$. They are given by the continuity equation (again)
+\begin{equation}
+    \frac{D}{D\tau}\delta = -\theta(1+\delta),
+    \label{eq:conteq}
+\end{equation}
+and the Euler equation,
+\begin{equation}
+    \frac{D}{D\tau}\theta = -\mathcal H \theta - (\partial^iv^j)^2 - \frac{3}{2}\Omega_m\mathcal H^2\delta.
+\end{equation}
+% TODO: say something about the different ways of solving these eqs?
+
+We proceed by dividing equations \ref{eq:conteq} and \ref{eq:conteqtracer} by $1+\delta$ and $1+\delta_g$, respectively to get
+\begin{equation}
+    \frac{1}{1+\delta_g}\frac{D}{D\tau}\delta_g = \frac{1}{1+\delta}\frac{D}{D\tau}\delta.
+\end{equation}
+This can be solved by switching to Lagrangian coordinates to get
+\begin{equation}
+    \ln (1+\delta_g(\mathbf x (\tau), \tau)) = \ln (1+\delta(\mathbf x (\tau), \tau)) + \ln (\frac{1+\delta_g(\mathbf x (\tau), \tau)}{1+\delta(\mathbf x(\tau), \tau)}), \quad \tau>\tau_*.
+\end{equation}
+
+\subsection{EFT of bias parameters}
+%TODO: explain lagrangian and eularian space
+Main ref: \cite{Desjacques_2018}
+We would like to find a "basis" of bias parameters up to a given order in perturbation theory. We will assume that (1) gravitation is described by general relativity, (2) that we can neglect the impact of massive neutrinos and dark energy perturbations, (3) that initial conditions are Gaussian and adiabatic.
+
+We will assume that the only quantities relevant for the formation of galaxies are local on some scale $R_*$ which is much larger than the size of a galaxy. According to the equivalence principle, the only effects that can be measured by a freely falling observer (i.e. forming galaxy) is the second derivatives of the gravitational potential, $\partial_i \partial_j \Phi$. Higher derivatives will be higher order contributions, because each derivative on a scale of $R_*$ contributes a factor of $k/R_*$, which for large enough scales will be much smaller than one.
+
+Now, the galaxy density, $\delta_g$ %TODO: give proper def of delta_g
+will in a very general sense depend on the history of $\partial_i \partial_j \Phi$ along the fluid trajectory. In other words:
+\begin{equation}
+    \partial_g(\mathbf x, \tau) \supset \int^\tau d\tau'f_{\mathcal O }(\tau, \tau') \mathcal O (\mathbf x_{fl}(\tau'), \tau'),
+\end{equation}
+where $f_O$ is some kernel that we don't need to bother defining. %TODO: is there anything more we can say about it?
+We can then Taylor expand to get
+\begin{equation}
+    \partial_g(\mathbf x, \tau) \supset \sbr{\int^\tau d\tau'f_{\mathcal O }(\tau, \tau')} \mathcal O (\mathbf x_{fl}(\tau), \tau) + \sbr{\int^\tau d\tau' (\tau'-\tau) f_{\mathcal O }(\tau, \tau')} \frac{D}{D\tau}\mathcal O (\mathbf x_{fl}(\tau), \tau) + \cdots,
+\end{equation}
+where $D/D\tau$ is the convective derivative along the fluid flow. %tTODO: give mathematical definition 
+In order to define a basis we thus also have to include time derivatives $D/D\tau$ of the second derivatives of the potential. It now seems like we would need an infinite set of operators to form a basis. This can be avoided by noticing at finite order in perturbation theory, only a finite amount of these operators are linearly independent of one another.
+
+In order to show the above statement, we will first switch to Lagrangian coordinates $\mathbf q = \mathbf x_{fl}(\tau=0)$ where the convective time derivative simplifies to $\partial/\partial \tau$. We also assume that the $n$-th order growth factor is given by the linear growth factor to the $n$-th power. This is only strictly valid for an EdS (flat matter dominated universe) but is still very accurate for other cosmologies such as $\Lambda$ CDM. % TODO: when are you even allowed to use a growth factor? check this
+Consider some operator in the basis, $O_L(\mathbf q, \tau)$ which has contributions at various orders, $O_L^i(\mathbf q, \tau)$, then
+\begin{equation}
+    \br{\frac{D}{D\tau}}^n O_L(\mathbf q, \tau)|^{(n)} = \br{\frac{\partial}{\partial\tau}}^n O_L(\mathbf q, \tau)|^{(n)} = \sum_{i = 1}^n \br{\frac{d^n}{d\tau^n}D^i(\tau)}O^{i}_{L}(\mathbf q, \tau_0).
+\end{equation}
+
+Next, although higher order contributions start being linearly dependent on the lower order contributions after some order, as shown above, it is worth noting that these higher order contributions are in general no longer local in $\partial_i\partial_j \phi$. This is immediately obvious if we notice that the convective time derivative contains a spatial derivative that generates higher order ($k/R_*$) terms. It turns out that, due to symmetry requirements, we only need to consider $\partial_i \partial_j / \nabla ^2$ acting on powers of $\partial_k \partial_l \Phi$ in order to get all the new terms created by the extra spatial derivatives. % TODO: find a proper proof of this, "Large Scale Galaxy Bias" just kind of brushes over this imo, can check out McDonald & Roy (2009) and Desjacques, Jeong & Schmidt, Large-Scale Galaxy Bias (2018)
+
+Constructing a Eularian basis out of $\partial_i\partial_j\Phi(\mathbf x, \tau)$ and its convective time derivatives can be done explicitly as follows. First define
+\begin{equation}
+    \Pi^{[1]}_{ij}(\mathbf x, \tau) = \frac{2}{3\Omega_m\mathcal H^2}\partial_i\partial_j\Phi(\mathbf x, \tau) = K_{ij}(\mathbf x, \tau) + \frac{1}{3}\delta_{ij}\delta(\mathbf x, \tau)
+\end{equation}
+and
+\begin{equation}
+    \Pi^{[n]}_{ij} = \frac{1}{(n-1)!}\sbr{ \frac{1}{\mathcal H f}\frac{D}{D\tau} \Pi^{[n-1]}_{ij} - (n-1)\Pi^{[n-1]}_{ij}},
+\end{equation}
+as given by ref. \cite{Mirbabayi_2015}. Then take into account that $\tr \Pi^{[n]}$ can be written in terms of lower order operators through the Eularian fluid equations. % TODO: introduce/discuss them very briefly
+
+To get all terms at order $n$, we then write products of $\Pi^{[k]}$ where $k<n$ and the total order adds up to $n$ or less and take traces of the different possible combinations of each product. %TODO: describe this better somehow
+
+\section{Spin-2 Fields and Their Projections}
+
+\section{Galaxy Intrinsic Alignment}
+\label{sec:galaxyintrinsicalignment}
+
+
 
 \printbibliography
 

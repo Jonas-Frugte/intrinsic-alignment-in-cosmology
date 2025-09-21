@@ -158,7 +158,7 @@ Clearly this can be easily generalized to any order.
 Main ref: \cite{Desjacques_2018}
 We would like to find a "basis" of bias parameters up to a given order in perturbation theory. We will assume that (1) gravitation is described by general relativity, (2) that we can neglect the impact of massive neutrinos and dark energy perturbations, (3) that initial conditions are Gaussian and adiabatic.
 
-We will assume that the only quantities relevant for the formation of galaxies are local on some scale $R_*$ which is much larger than the size of a galaxy. According to the equivalence principle, the only effects that can be measured by a freely falling observer (i.e. forming galaxy) is the second derivatives of the gravitational potential, $\partial_i \partial_j \Phi$. Higher derivatives will be higher order contributions, because each derivative on a scale of $R_*$ contributes a factor of $k/R_*$, which for large enough scales will be much smaller than one.
+\emph{We will assume that the only quantities relevant for the formation of galaxies are local on some scale} $R_*$ (which is much larger than the size of a galaxy / whatever tracer we are considering). According to the equivalence principle, the only effects that can be measured by a freely falling observer (i.e. forming galaxy) is the second derivatives of the gravitational potential, $\partial_i \partial_j \Phi$. Higher derivatives will be higher order contributions, because each derivative on a scale of $R_*$ contributes a factor of $k/R_*$, which for large enough scales will be much smaller than one.
 
 Now, the galaxy density, $\delta_g$ %TODO: give proper def of delta_g
 will in a very general sense depend on the history of $\partial_i \partial_j \Phi$ along the fluid trajectory. In other words:
@@ -179,9 +179,10 @@ Consider some operator in the basis, $O_L(\mathbf q, \tau)$ which has contributi
     \br{\frac{D}{D\tau}}^n O_L(\mathbf q, \tau)|^{(n)} = \br{\frac{\partial}{\partial\tau}}^n O_L(\mathbf q, \tau)|^{(n)} = \sum_{i = 1}^n \br{\frac{d^n}{d\tau^n}D^i(\tau)}O^{i}_{L}(\mathbf q, \tau_0).
 \end{equation}
 
-Next, although higher order contributions start being linearly dependent on the lower order contributions after some order, as shown above, it is worth noting that these higher order contributions are in general no longer local in $\partial_i\partial_j \phi$. This is immediately obvious if we notice that the convective time derivative contains a spatial derivative that generates higher order ($k/R_*$) terms. It turns out that, due to symmetry requirements, we only need to consider $\partial_i \partial_j / \nabla ^2$ acting on powers of $\partial_k \partial_l \Phi$ in order to get all the new terms created by the extra spatial derivatives. % TODO: find a proper proof of this, "Large Scale Galaxy Bias" just kind of brushes over this imo, can check out McDonald & Roy (2009) and Desjacques, Jeong & Schmidt, Large-Scale Galaxy Bias (2018)
+Next, although higher order contributions start being linearly dependent on the lower order contributions after some order, as shown above, it is worth noting that these higher order contributions are in general no longer local in $\partial_i\partial_j \phi$. This is immediately obvious if we notice that the convective time derivative contains a spatial derivative that generates higher order ($k/R_*$) terms. It turns out that, due to symmetry requirements, we only need to consider $\partial_i \partial_j / \nabla ^2$ acting on powers of $\partial_k \partial_l \Phi$ in order to get all the new terms created by the extra spatial derivatives. % TODO: find a proper proof of this, "Large Scale Galaxy Bias" just kind of brushes over this imo, can check out McDonald & Roy (2009)
+% TODO: okay so apparently this basis is only for terms local in spatial derivatives, so we do actually get extra terms given by spatial derivatives.
 
-Constructing a Eularian basis out of $\partial_i\partial_j\Phi(\mathbf x, \tau)$ and its convective time derivatives can be done explicitly as follows. First define
+Constructing a \emph{local} Eularian basis out of $\partial_i\partial_j\Phi(\mathbf x, \tau)$ and its convective time derivatives can be done explicitly as follows. First define
 \begin{equation}
     \Pi^{[1]}_{ij}(\mathbf x, \tau) = \frac{2}{3\Omega_m\mathcal H^2}\partial_i\partial_j\Phi(\mathbf x, \tau) = K_{ij}(\mathbf x, \tau) + \frac{1}{3}\delta_{ij}\delta(\mathbf x, \tau)
 \end{equation}
@@ -192,6 +193,12 @@ and
 as given by ref. \cite{Mirbabayi_2015}. Then take into account that $\tr \Pi^{[n]}$ can be written in terms of lower order operators through the Eularian fluid equations. % TODO: introduce/discuss them very briefly
 
 To get all terms at order $n$, we then write products of $\Pi^{[k]}$ where $k<n$ and the total order adds up to $n$ or less and take traces of the different possible combinations of each product. %TODO: describe this better somehow
+
+To get the full expansion, we should also take into account higher order spatial derivatives of the gravitational potential. This derivative is taken on the size scale of the tracer, which we will denote by $R_t$. Mathematically, this corresponds to
+\begin{equation}
+    \frac{\partial}{\partial x^i} \rightarrow \frac{\partial}{\partial \br{x^i/R_t}}=R_t\frac{\partial}{\partial x^i}.
+\end{equation}
+In Fourier space, every derivative on that scale is thus surpressed by $R_t k$. We see that, if the tracer is small (small $R_t$) compared to the scales that we are looking at $1/k$, then we each order of spatial derivatives is surpressed and we can truncated the expansion up to some order. Under rotation and parity invariance we only get even orders of spatial derivatives contributing to the bias expansion. (both for scalars and for symmetric tensors as we will discuss later)
 
 \section{Spin-2 Fields and Their Projections}
 It is well known how to construct powerspectra from scalar quantities. Constructing them for a spin-2 field requires more care. In particular, we would like to find a way to define powerspectra that is independent of the orientation of the observer.
@@ -258,7 +265,13 @@ This reduces the amount of independent spectra to 5. % Don't you also get this i
 
 
 
-\section{Galaxy Intrinsic Alignment}
+\section{EFT of Galaxy IA}
+To get the EFT of galaxy IA, we use $\Pi^{[n]}$ again (equation ... %TODO: ref
+) but instead of making scalar combinations we make symmetric trace free combinations of the form
+\begin{equation}
+    Q_{ij}(\mathbf x, \eta) = \sum_{\mathcal O}b_{\mathcal O}(\eta)\mathcal O_{ij}(\mathbf x, \eta).
+\end{equation}
+
 \label{sec:galaxyintrinsicalignment}
 
 

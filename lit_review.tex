@@ -194,11 +194,23 @@ as given by ref. \cite{Mirbabayi_2015}. Then take into account that $\tr \Pi^{[n
 
 To get all terms at order $n$, we then write products of $\Pi^{[k]}$ where $k<n$ and the total order adds up to $n$ or less and take traces of the different possible combinations of each product. %TODO: describe this better somehow
 
-To get the full expansion, we should also take into account higher order spatial derivatives of the gravitational potential. This derivative is taken on the size scale of the tracer, which we will denote by $R_t$. Mathematically, this corresponds to
-\begin{equation}
-    \frac{\partial}{\partial x^i} \rightarrow \frac{\partial}{\partial \br{x^i/R_t}}=R_t\frac{\partial}{\partial x^i}.
-\end{equation}
-In Fourier space, every derivative on that scale is thus surpressed by $R_t k$. We see that, if the tracer is small (small $R_t$) compared to the scales that we are looking at $1/k$, then we each order of spatial derivatives is surpressed and we can truncated the expansion up to some order. Under rotation and parity invariance we only get even orders of spatial derivatives contributing to the bias expansion. (both for scalars and for symmetric tensors as we will discuss later)
+Thusfar we have only considered an expansion local in the second derivatives of the graviational potential. Higher order derivatives can and should also be considered.
+TODO: this part is not really clear to me, where does the $R^2$ come from in equation 2.17 of "Effective Field Theory of Instrinsic Alignments ..."? Why is it third order in the matter density perturbations?
+%TODO: why? perhaps consider this further, we are basically saying here that the gravitational potential should vary significantly on a scale R_* much larger than the scale of our tracers, does this conflict with anything else?
+Some math I did regarding this stuff:
+\begin{gather}
+    \lim_{R \rightarrow 0}\frac{1}{R}\sbr{f_{R_*}(x+R) - f_{R_*}(x)} \\
+    = \lim_{R \rightarrow 0} \frac{1}{2RR_*}\sbr{\int_{x+R-R_*}^{x+R+R_*}f(y)\d y - \int_{x-R_*}^{x+R_*}f(y)\d y} \\
+    = \lim_{R \rightarrow 0} \frac{1}{2RR_*}\sbr{\int_{x+R_*}^{x+R+R_*}f(y)\d y - \int_{x-R_*}^{x+R-R_*}f(y)\d y} \\
+    = \lim_{R\rightarrow 0} \frac{R}{2RR_*}\sbr{f(\xi_+) - f(\xi_-)} \quad \text{(Mean Value Thm)}\\
+    =\frac{f(x+R_*) - f(x-R_*)}{2R_*} \\
+    \xrightarrow{FT} \frac{f(k)}{2R_*}\br{e^{ikR_*} - e^{-ikR_*}} \\
+    = \frac{f(k)}{R_*}i\sin \br{kR_*} \\
+    \begin{cases}
+        \approx ikf(k) & k R_* \ll 1\\
+        \sim f(k)/R_* & \text{else} 
+    \end{cases}
+\end{gather}
 
 \section{Spin-2 Fields and Their Projections}
 It is well known how to construct powerspectra from scalar quantities. Constructing them for a spin-2 field requires more care. In particular, we would like to find a way to define powerspectra that is independent of the orientation of the observer.

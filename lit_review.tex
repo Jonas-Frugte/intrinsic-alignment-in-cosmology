@@ -194,23 +194,26 @@ as given by ref. \cite{Mirbabayi_2015}. Then take into account that $\tr \Pi^{[n
 
 To get all terms at order $n$, we then write products of $\Pi^{[k]}$ where $k<n$ and the total order adds up to $n$ or less and take traces of the different possible combinations of each product. %TODO: describe this better somehow
 
-Thusfar we have only considered an expansion local in the second derivatives of the graviational potential. Higher order derivatives can and should also be considered.
-TODO: this part is not really clear to me, where does the $R^2$ come from in equation 2.17 of "Effective Field Theory of Instrinsic Alignments ..."? Why is it third order in the matter density perturbations?
-%TODO: why? perhaps consider this further, we are basically saying here that the gravitational potential should vary significantly on a scale R_* much larger than the scale of our tracers, does this conflict with anything else?
-Some math I did regarding this stuff:
-\begin{gather}
-    \lim_{R \rightarrow 0}\frac{1}{R}\sbr{f_{R_*}(x+R) - f_{R_*}(x)} \\
-    = \lim_{R \rightarrow 0} \frac{1}{2RR_*}\sbr{\int_{x+R-R_*}^{x+R+R_*}f(y)\d y - \int_{x-R_*}^{x+R_*}f(y)\d y} \\
-    = \lim_{R \rightarrow 0} \frac{1}{2RR_*}\sbr{\int_{x+R_*}^{x+R+R_*}f(y)\d y - \int_{x-R_*}^{x+R-R_*}f(y)\d y} \\
-    = \lim_{R\rightarrow 0} \frac{R}{2RR_*}\sbr{f(\xi_+) - f(\xi_-)} \quad \text{(Mean Value Thm)}\\
-    =\frac{f(x+R_*) - f(x-R_*)}{2R_*} \\
-    \xrightarrow{FT} \frac{f(k)}{2R_*}\br{e^{ikR_*} - e^{-ikR_*}} \\
-    = \frac{f(k)}{R_*}i\sin \br{kR_*} \\
-    \begin{cases}
-        \approx ikf(k) & k R_* \ll 1\\
-        \sim f(k)/R_* & \text{else} 
-    \end{cases}
-\end{gather}
+Thusfar we have only considered an expansion local in the second derivatives of the gravitational potential. Higher order derivatives can and should also be considered. Assume that all relevant nonlocal effects are limited to some scale, the "scale of nonlocality" $R_*$. Following the reasoning in \cite{Schmidt2013_clustering}, nonlocal contributions to the tracer number density at $\mathbf x$ will come from terms at $\mathbf x + \mathbf y$, where $y \sim R_*$. Take, for example, $\delta(\mathbf x + \mathbf y)$. Through a Taylor expansion at $\mathbf x$ we thus find that this contribution can be written as
+$$
+b_{\delta(\mathbf x + \mathbf y)}\delta(\mathbf x+\mathbf y) = b_{\delta(\mathbf x + \mathbf y)}(\delta(\mathbf x) + \mathbf y \cdot\vec \nabla \delta(\mathbf x) + y^2\nabla^2\delta(\mathbf x) + \cdots). 
+$$
+Terms with an odd order of derivatives will not contribute due to isotropy. On the other hand, $y^2\nabla^2\sim R_*^2 k^2$ in Fourier space. We thus see that for scales much larger than the non-locality scale (the regime in which we expect biasing to work anyway), higher derivative terms are surpressed through the factor $R_*^{2n}k^{2n}\ll 1$, where $n$ is the order of the derivative. Note that we assume that the BP's themselves are not much larger than 1, and if we find that that is not the case then there's a sign that our perturbative expansion has stopped working for the scales considered. When aiming to find a full basis for our expansion up to some order, we thus need to consider the tracer in question to know up to which order in derivatives and perturbation theory to work. % TODO: check this? should I use "perturbation theory" here?
+
+% Some math I did regarding this stuff:
+% \begin{gather}
+%     \lim_{R \rightarrow 0}\frac{1}{R}\sbr{f_{R_*}(x+R) - f_{R_*}(x)} \\
+%     = \lim_{R \rightarrow 0} \frac{1}{2RR_*}\sbr{\int_{x+R-R_*}^{x+R+R_*}f(y)\d y - \int_{x-R_*}^{x+R_*}f(y)\d y} \\
+%     = \lim_{R \rightarrow 0} \frac{1}{2RR_*}\sbr{\int_{x+R_*}^{x+R+R_*}f(y)\d y - \int_{x-R_*}^{x+R-R_*}f(y)\d y} \\
+%     = \lim_{R\rightarrow 0} \frac{R}{2RR_*}\sbr{f(\xi_+) - f(\xi_-)} \quad \text{(Mean Value Thm)}\\
+%     =\frac{f(x+R_*) - f(x-R_*)}{2R_*} \\
+%     \xrightarrow{FT} \frac{f(k)}{2R_*}\br{e^{ikR_*} - e^{-ikR_*}} \\
+%     = \frac{f(k)}{R_*}i\sin \br{kR_*} \\
+%     \begin{cases}
+%         \approx ikf(k) & k R_* \ll 1\\
+%         \sim f(k)/R_* & \text{else} 
+%     \end{cases}
+% \end{gather}
 
 \section{Spin-2 Fields and Their Projections}
 It is well known how to construct powerspectra from scalar quantities. Constructing them for a spin-2 field requires more care. In particular, we would like to find a way to define powerspectra that is independent of the orientation of the observer.

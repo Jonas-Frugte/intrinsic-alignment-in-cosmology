@@ -72,6 +72,7 @@ A brief literature review of intrinsic alignment (IA) in cosmology.
     \item[] BPs: bias parameters
     \item[] IA: intrinsic alignment
     \item[] LIMD: linear in matter density
+    \item[] SC gauge: synchronous-comoving gauge
 \end{itemize}
 
 \section{Halo Bias and EFT}
@@ -196,7 +197,7 @@ To get all terms at order $n$, we then write products of $\Pi^{[k]}$ where $k<n$
 
 Thusfar we have only considered an expansion local in the second derivatives of the gravitational potential. Higher order derivatives can and should also be considered. Assume that all relevant nonlocal effects are limited to some scale, the "scale of nonlocality" $R_*$. Following the reasoning in \cite{Schmidt2013_clustering}, nonlocal contributions to the tracer number density at $\mathbf x$ will come from terms at $\mathbf x + \mathbf y$, where $y \sim R_*$. Take, for example, $\delta(\mathbf x + \mathbf y)$. Through a Taylor expansion at $\mathbf x$ we thus find that this contribution can be written as
 $$
-b_{\delta(\mathbf x + \mathbf y)}\delta(\mathbf x+\mathbf y) = b_{\delta(\mathbf x + \mathbf y)}(\delta(\mathbf x) + \mathbf y \cdot\vec \nabla \delta(\mathbf x) + y^2\nabla^2\delta(\mathbf x) + \cdots). 
+b_{\delta(\mathbf x + \mathbf y)}\delta(\mathbf x+\mathbf y) = b_{\delta(\mathbf x + \mathbf y)}(\delta(\mathbf x) + \mathbf y \cdot\vec \nabla \delta(\mathbf x) + y^2\nabla^2\delta(\mathbf x) + \cdots).
 $$
 Terms with an odd order of derivatives will not contribute due to isotropy. On the other hand, $y^2\nabla^2\sim R_*^2 k^2$ in Fourier space. We thus see that for scales much larger than the non-locality scale (the regime in which we expect biasing to work anyway), higher derivative terms are surpressed through the factor $R_*^{2n}k^{2n}\ll 1$, where $n$ is the order of the derivative. Note that we assume that the BP's themselves are not much larger than 1, and if we find that that is not the case then there's a sign that our perturbative expansion has stopped working for the scales considered. When aiming to find a full basis for our expansion up to some order, we thus need to consider the tracer in question to know up to which order in derivatives and perturbation theory to work. % TODO: check this? should I use "perturbation theory" here?
 
@@ -287,7 +288,44 @@ To get the EFT of galaxy IA, we use $\Pi^{[n]}$ again (equation ... %TODO: ref
     Q_{ij}(\mathbf x, \eta) = \sum_{\mathcal O}b_{\mathcal O}(\eta)\mathcal O_{ij}(\mathbf x, \eta).
 \end{equation}
 
-\label{sec:galaxyintrinsicalignment}
+\section{Lensing corrections to observed galaxy density}
+Based on \cite{Schmidt2013_clustering}. Unlensed photon geodesic through the centre ($x^\mu = 0$) given by
+$$
+x^\mu(\chi) = (\eta_0-\chi, \hat{\mathbf n}\chi), \quad \chi \text{ affine parameter.}
+$$
+Therefore, if we observe a (in general) lensed light ray in direction $\hat n^i$ corresponding to an object with redshift $\tilde z$ corresponding to the comoving radial distance $\tilde \chi(\tilde z)$, then the observed location of the object is given by $\tilde x^\mu$ with
+\begin{equation}
+    \tilde x^0 = \eta_0 - \tilde \chi, \quad \tilde x^i = \hat n^i \tilde \chi.
+\end{equation}
+Now define the difference between the observed and the actual object location as the true location minus the observed location, i.e.
+\begin{equation}
+    \Delta x^\mu = x^{\mu} - \tilde x^\mu.
+\end{equation}
+We also define $\delta z$ through the inferred emission scale factor $\tilde a = 1/(1+\tilde z)$ as
+\begin{equation}
+    \frac{a(x^0)}{\tilde a} = 1+\delta z \implies \bar z - \tilde z = -(1+\tilde z)\delta z.
+\end{equation}
+In other words, $\delta z$ is the the difference between the observed redshift and the redshift $\bar z$ that would be observed in an unperturbed universe.
+
+For the rest of the section, we work in the SC gauge (what is the significance of this? should I say more about it?)
+
+\subsection{Observed galaxy number density}
+The observed number of galaxies in a volume $\tilde V$ defined in terms of the observed coordinates is given gauge-invariantly as
+\begin{align}
+    N &= \int_{\tilde V} J^\mu d\tilde V_\mu\\
+    &= \int_{\tilde V} \sqrt{-g} n_g u^\mu \epsilon_{\mu\alpha\beta\gamma} \frac{\partial x^\alpha}{\partial \tilde x^1}\frac{\partial x^\beta}{\partial \tilde x^2}\frac{\partial x^\gamma}{\partial \tilde x^3} d\tilde x^1 d\tilde x^2 d\tilde x^3
+\end{align}
+where $J^\mu = \sqrt{-g} n_g u^\mu$ is the galaxy number 4-current density, $\tilde V$ is a hypersurface in 4-space, i.e. a volume in 3-space, and $d\tilde V_\mu$ is the normal vector of $\tilde V$ with area $\d \tilde V$. It is mathematically as
+\begin{equation}
+    \d \tilde V_\mu = \underbrace{\epsilon_{\mu 123} dx^1dx^2dx^3}_{\text{in true coordinates}} = \underbrace{\epsilon_{\mu \alpha\beta\gamma} \frac{\partial x^\alpha}{\partial \tilde x^1}\frac{\partial x^\beta}{\partial \tilde x^2}\frac{\partial x^\gamma}{\partial \tilde x^3} d\tilde x^1 d\tilde x^2 d\tilde x^3}_{\text{in observed coordinates}}.
+\end{equation} 
+Finally, $n_g$ is the proper number density of galaxies, i.e. as measured by an observer moving with the galaxies, and $u_\mu$ is the 4-velocity of galaxies (we assume zero velocity dispersion) (check this statement).
+
+In the SC gauge, the 4-velocities reduce to $(1/a, 0, 0, 0)$. We thus get
+\begin{equation}
+    N = \int_{\tilde V}\sqrt{-g}n_g(x^\alpha)\frac{1}{a(x^0)}\left |\frac{\partial x^i}{\partial \tilde x^j}\right | d^3\tilde {\mathbf x}, \quad (\text{SC gauge}).
+\end{equation}
+
 
 
 

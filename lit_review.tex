@@ -277,6 +277,20 @@ If we also enfore invariance under parity transformations, then we find that the
 \end{equation}
 This reduces the amount of independent spectra to 5. % Don't you also get this if there's no parity invariance? this part is a bit sketch ngl
 
+\subsection{Noise power spectra}
+\label{subsec:noisepowerspectragalaxyIA}
+In accordance with the previous subsection, there are 3 power spectra due to stochastic / noise terms in the EFT of galaxy IA. They come from combinations of scalar / galaxy size noise and spin-2 / symmetric traceless tensor / galaxy shear noise.
+\begin{align}
+    \langle \epsilon(\mathbf k)\epsilon(\mathbf k') \rangle' &= P^s_\epsilon(k), \\
+    \langle \epsilon_{ij}(\mathbf k)\epsilon(\mathbf k') \rangle' &= (\mathbf k_i \mathbf k_j - \frac{1}{3} \delta_{ij}k^2)P^{gs}_\epsilon(k), \\
+    \langle \epsilon_{ij}(\mathbf k)\epsilon_{kl}(\mathbf k') \rangle' &= (\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jl}-\frac{2}{3}\delta_{ij}\delta_{kl})P^g_\epsilon(k) .
+\end{align}
+In all three cases $P_{\epsilon}^{\cdots}(k) = c^{\cdots} + \mathcal O(R^2k^2)$. The forms of the spectra are again constructed to satisfy transformation properties, symmetry, and tracelessness. For the scalar-scalar and tensor-tensor spectra the above equations correspond to white noise with some corrections terms that only become significant if the scales we are looking at ($1/k$) become comparable to the scale of nonlocality of galaxy formation ($R$). For the tensor-scalar correlation there is no `white noise' (or term independent of $k$). To see why, consider what would happen if $P^{gs}_\epsilon(k)$ would have a $k^{-2}$ term.
+\begin{equation}
+    \langle \epsilon_{ij}(\mathbf k)\epsilon(\mathbf k') \rangle' \supset \br{ \frac{\mathbf k_i\mathbf k_j}{k^2} - \frac{1}{3}\delta_{ij}} \xrightarrow{\mathcal F^{-1}}\propto (\partial_i\partial_j\nabla^{-2} - \frac{1}{3}\delta_{ij})\delta^{3}(\mathbf x) \supset \propto \frac{1}{x^3}.
+\end{equation}
+This means that we have nonlocality on scales larger than the nonlocality scale of galaxy IA, which shouldn't be possible.
+
 
 
 
@@ -288,6 +302,14 @@ To get the EFT of galaxy IA, we use $\Pi^{[n]}$ again (equation ... %TODO: ref
     Q_{ij}(\mathbf x, \eta) = \sum_{\mathcal O}b_{\mathcal O}(\eta)\mathcal O_{ij}(\mathbf x, \eta).
 \end{equation}
 
+\subsection{Results for Three-Dimensional IA Power Spectra}
+The helicity power spectra can be seperated as
+\begin{equation}
+    P_{\ell \ell'}^{(m)}(k) = [P^{(m)}_{\ell\ell'}]_{\text{L+H.D.}}(k) + [P^{(m)}_{\ell\ell'}]_{(22)}(k) + [P^{(m)}_{\ell\ell'}]_{(13) + (31)}(k) + [P^{(m)}_{\ell\ell'}]_{\epsilon}(k).
+\end{equation}
+The first term corresponds to leading order and higher derivative contributions (see subsection ...) %TODO
+and the last term corresponds to the noise spectra (see subsection \ref{subsec:noisepowerspectragalaxyIA}). There is no $(12)$ term because this would correspond to contributions like $\langle \delta^3 \rangle$ which vanish or, if we do not assume non-gaussianity, are very small.
+% TODO: the rest of the section
 \section{Lensing corrections to observed galaxy density}
 Based on \cite{Schmidt2013_clustering}. Unlensed photon geodesic through the centre ($x^\mu = 0$) given by
 $$
@@ -324,9 +346,42 @@ Finally, $n_g$ is the proper number density of galaxies, i.e. as measured by an 
 In the SC gauge, the 4-velocities reduce to $(1/a, 0, 0, 0)$. We thus get
 \begin{equation}
     N = \int_{\tilde V}\sqrt{-g}n_g(x^\alpha)\frac{1}{a(x^0)}\left |\frac{\partial x^i}{\partial \tilde x^j}\right | d^3\tilde {\mathbf x}, \quad (\text{SC gauge}).
+    \label{eq:scgaugenumberdensityintruecoords}
+\end{equation}
+One can show that, to first order,
+\begin{equation}
+    \left | \frac{\partial x^i}{\partial \tilde x^j} \right | = 1 + \frac{\partial \Delta x^i}{\partial \tilde x^i}, \quad \sqrt{-g} = a^4\br{1 + \frac{1}{2}\delta g^\mu_\mu}.
+\end{equation}
+Also,
+\begin{equation}
+    a^3(\bar z) n_g(\mathbf x, \bar z) = a^3(\bar z)\bar n_g(\bar z)[1+\delta_g^{sc}(\mathbf x, \bar z)],
+\end{equation}
+where we assumed that $\langle \tilde z \rangle = \langle \bar z \rangle$ and we define $\delta_g^{sc}$ as the galaxy number density perturbation in the comoving frame.
+Additionally, up to first order,
+\begin{equation}
+    a^3(z)n_g(\mathbf x, \bar z) = a^3(\tilde z)\bar n_g(\tilde z)[1+\delta_g^{sc}(\mathbf x, \tilde z)] - \underbrace{(1+\tilde z)\frac{d(a^3\bar n_g)}{d z}\Big |_{z=\tilde z}\delta z}_{:=b_c}
 \end{equation}
 
+Now for the important part. The observed galaxy density is defined via the number of galaxies $N$ observed in a volume $\tilde V$ as
+\begin{equation}
+    \int_{\tilde V}a^3(\tilde z)\tilde n_g(\tilde {\mathbf x}, \tilde z) d^3\tilde{\mathbf x} = N.
+\end{equation}
+Equating the integrand to that of equation \ref{eq:scgaugenumberdensityintruecoords} gives
+\begin{gather}
+    a^3(\tilde z)\tilde n_g(\tilde{\mathbf x}, \tilde z) = \sqrt{-g}\frac{1}{a(\bar z)} n_g(\mathbf x, \bar z)\left | \frac{\partial x^i}{\partial\tilde x^j} \right |
+\end{gather}
+using the earlier expansions it can then be shown that we obtain the relation
+\begin{gather}
+    \tilde \delta_g = \delta^{sc}_g + b_c\delta z + 2\frac{\Delta x_\parallel}{\tilde \chi} + \partial_{\parallel}\Delta x_\parallel - 2\hat \kappa, \quad \hat \kappa := -\frac{1}{2}\partial_{\perp i}\Delta x^i_{\perp}.
+    \label{eq:relcorrrealspace}
+\end{gather}
+Here ``parallel'' means parallel to the $\hat n$ axis.
 
+Now what is the significance of these corrections? If you take the fourier transform of equation \ref{eq:relcorrrealspace}, you get additional terms that look like the terms obtained from nonzero $f_{NL}$, i.e.
+\begin{equation}
+    ...
+\end{equation}
+The effect corresponds to a $f_{NL}$ of order $1$. These corrections are thus only relevant for extremely large volume surveys, such as Euclid.
 
 
 \printbibliography

@@ -43,6 +43,9 @@
 \DeclareRobustCommand{\tr}{\ifmmode\text{tr}\else d\fi}
 \DeclareRobustCommand{\tf}{\ifmmode\text{tf}\else d\fi}
 
+\newcommand{\Rstar}{R_\ast}
+\newcommand{\deltaD}{\delta_{\mathrm D}}
+
 \newcommand{\br}[1]{\ensuremath{\left( #1 \right)}}
 \newcommand{\sbr}[1]{\ensuremath{\left[ #1 \right]}}
 
@@ -66,14 +69,57 @@ A brief literature review of intrinsic alignment (IA) in cosmology.
 \begin{document}
 
 \maketitle
-\section*{Abbreviations}
+
+\section*{Abbreviations Used}
 \begin{itemize}
-    \item[] EFT: effective field theory
-    \item[] BPs: bias parameters
-    \item[] IA: intrinsic alignment
-    \item[] LIMD: linear in matter density
-    \item[] SC gauge: synchronous-comoving gauge
+    \item[EFT:] effective field theory
+    \item[BPs:] bias parameters
+    \item[IA:] intrinsic alignment
+    \item[LIMD:] linear in matter density
+    \item[SC gauge:] synchronous-comoving gauge
 \end{itemize}
+
+\section*{Symbols Used}
+\small
+\begin{itemize}
+    \item[$a$:] scale factor
+    \item[$z,\ \bar z,\ \tilde z$:] redshift (background, observed)
+    \item[$\eta$:] conformal time
+    \item[$\mathcal H$:] conformal Hubble parameter ($\mathcal H=aH$)
+    \item[$\Omega_m$:] matter density parameter
+    \item[$D(z)$:] linear growth factor,\quad $f \equiv \d\ln D/\d\ln a$
+    \item[$\mathbf x,\ \mathbf q$:] Eulerian, Lagrangian position
+    \item[$\mathbf v,\ \theta$:] peculiar velocity, velocity divergence ($\theta=\partial_i v^i$)
+    \item[$s^i$:] Lagrangian displacement
+    \item[$\chi,\ \tilde\chi$:] comoving radial distance (true, observed)
+    \item[$\hat{\mathbf n}$:] line-of-sight unit vector
+    \item[$P^{ij}$:] sky projector ($P^{ij}=\delta^{ij}-\hat n^i\hat n^j$)
+    \item[$\partial_\parallel,\ \partial_{\perp i}$:] derivatives along / transverse to $\hat{\mathbf n}$
+    \item[$\Phi$:] Newtonian gravitational potential
+    \item[$\delta_m$:] matter density contrast
+    \item[$\delta_g,\ \delta_h$:] galaxy, halo density contrast
+    \item[$K_{ij}$:] tidal tensor $K_{ij}\equiv \partial_i\partial_j\nabla^{-2}\delta_m-\tfrac13\delta_{ij}\delta_m$
+    \item[$\Pi^{[n]}_{ij}$:] convective-time-derivative operator hierarchy (EFT basis)
+    \item[$b_{\mathcal O}$:] bias / IA coefficients for operator $\mathcal O$
+    \item[$\Rstar$:] non-locality scale (higher-derivative suppression scale)
+    \item[$Q_{ij}$:] 3D shape (symmetric, trace-free) tensor of a galaxy
+    \item[$\gamma_{ij}$:] projected (spin-2) shear on the sky
+    \item[$\gamma^{I}_{ij}$:] intrinsic shear (IA) contribution
+    \item[$\kappa$:] lensing convergence,\quad $\hat \kappa$ for observed estimator
+    \item[$\Delta x^\mu$:] mapping between true and observed source position
+    \item[$\delta z$:] perturbation to observed redshift
+    \item[$n_g,\ \bar n_g,\ \tilde n_g$:] proper, background, observed galaxy number density
+    \item[$\epsilon,\ \epsilon_{ij}$:] IA stochastic (scalar / tensor) noise fields
+    \item[$\varepsilon_{\mu\nu\rho\sigma}$:] Levi-Civita tensor
+    \item[$\langle\cdots\rangle$:] ensemble average; prime (${}'$) means Dirac delta removed
+    \item[$\deltaD$:] Dirac delta function
+    \item[$P^{(m)}_{\ell\ell'}(k)$:] helicity power spectra of spin-2 components
+  \end{itemize}
+  \normalsize
+  
+
+\section{Introduction and Motivation}
+TODO
 
 \section{Halo Bias and EFT}
 In this section we introduce the much more established field of galaxy bias and an EFT of galaxy bias. This will directly translate to the EFT used in section \ref{sec:galaxyintrinsicalignment}. We consider a $\Lambda$CDM universe with a perturbed FLRW metric unless stated otherwise.
@@ -291,16 +337,42 @@ In all three cases $P_{\epsilon}^{\cdots}(k) = c^{\cdots} + \mathcal O(R^2k^2)$.
 \end{equation}
 This means that we have nonlocality on scales larger than the nonlocality scale of galaxy IA, which shouldn't be possible.
 
-
+\subsection{$E$ and $B$ modes of spin-2 field}
+TODO here:
+\begin{enumerate}
+    \item Explain what $E$ and $B$ modes are and their physical interpertation.
+    \item Explain how to go from spin-2 fields to $E$ and $B$ modes.
+\end{enumerate}
 
 
 
 \section{EFT of Galaxy IA}
+\subsection{Contributing Terms}
 To get the EFT of galaxy IA, we use $\Pi^{[n]}$ again (equation ... %TODO: ref
 ) but instead of making scalar combinations we make symmetric trace free combinations of the form
 \begin{equation}
     Q_{ij}(\mathbf x, \eta) = \sum_{\mathcal O}b_{\mathcal O}(\eta)\mathcal O_{ij}(\mathbf x, \eta).
 \end{equation}
+TODO here:
+\begin{enumerate}
+    \item Define tidal alignment and tidal torquing operators.
+    \item Write down lowest 2 - 3 orders of IA operator expansion, cite \cite{Vlah_2020}
+    \item also mention stochastic terms, higher derivatives and their relation to higher orders, renormalization of coefficients, degenerate terms
+\end{enumerate}
+
+\subsection{Physical Motivation - Tidal alignment and tidal torquing model}
+TODO here:
+\begin{enumerate}
+    \item Physically motivate linear and quadratic terms by summarizing the argument in \cite{Chisari_2013}.
+\end{enumerate}
+
+\subsection{Connection to $E$ and $B$ modes}
+TODO here:
+\begin{enumerate}
+    \item Explain that only higher order terms of EFT of galaxy IA generate $B$ modes and show why
+    \item Mention how nonzero $EB$ correlator is a smoking gun for parity violating models of inflation and cite \cite{Biagetti_2020}.
+\end{enumerate}
+
 
 \subsection{Results for Three-Dimensional IA Power Spectra}
 The helicity power spectra can be seperated as
@@ -310,6 +382,7 @@ The helicity power spectra can be seperated as
 The first term corresponds to leading order and higher derivative contributions (see subsection ...) %TODO
 and the last term corresponds to the noise spectra (see subsection \ref{subsec:noisepowerspectragalaxyIA}). There is no $(12)$ term because this would correspond to contributions like $\langle \delta^3 \rangle$ which vanish or, if we do not assume non-gaussianity, are very small.
 % TODO: the rest of the section
+
 \section{Lensing corrections to observed galaxy density}
 Based on \cite{Schmidt2013_clustering}. Unlensed photon geodesic through the centre ($x^\mu = 0$) given by
 $$
@@ -382,6 +455,13 @@ Now what is the significance of these corrections? If you take the fourier trans
     ...
 \end{equation}
 The effect corresponds to a $f_{NL}$ of order $1$. These corrections are thus only relevant for extremely large volume surveys, such as Euclid.
+
+\section{Calibration and Validation with Simulations}
+TODO here:
+\begin{enumerate}
+    \item Explain validity of EFT of IA based on \cite{bakx2023effectivefieldtheoryintrinsic}
+    \item Take a look at hydrodynamic simulations \cite{Samuroff_2021, Johnston_2023}
+\end{enumerate}
 
 
 \printbibliography
